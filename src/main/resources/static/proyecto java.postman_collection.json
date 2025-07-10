@@ -1,0 +1,598 @@
+{
+	"info": {
+		"_postman_id": "31520064-5906-4e7a-bee2-180daab15b35",
+		"name": "proyecto java",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35020060"
+	},
+	"item": [
+		{
+			"name": "productos",
+			"item": [
+				{
+					"name": "traer_productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "traer_por_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/productos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "traer_por_id_invalido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/productos/40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"40"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear_producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"un huevo\",\r\n  \"categoria\": \"LIBROS\",\r\n  \"descripcion\": \"Mouse con 7200 DPI, iluminación RGB configurable\",\r\n  \"precio\": 4599.99,\r\n  \"stock\": 20,\r\n  \"imagenUrl\": \"https://ejemplo.com/img/mouse.jpg\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear_producto_error_stock",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"error de stock\",\r\n    \"categoria\": 1,\r\n    \"descripcion\": 1,\r\n    \"precio\": 2000.99,\r\n    \"stock\": -2,\r\n    \"imagenUrl\": 1\r\n}  \r\n    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear_producto_error_precio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "/*\r\n     {\r\n         \"nombre\": \"error de categoria vacia\",\r\n         \"categoria\": \"\",\r\n         \"descripcion\": 1,\r\n         \"precio\": 2000.99,\r\n         \"stock\": 2,\r\n         \"imagenUrl\": 1\r\n     }\r\n\r\n{\r\n    \"nombre\": \"error de categoria invalida\",\r\n    \"categoria\": \"noExiste\",\r\n    \"descripcion\": 1,\r\n    \"precio\": 2000.99,\r\n    \"stock\": 2,\r\n    \"imagenUrl\": 1\r\n}    \r\n{\r\n    \"nombre\": \"error de stock\",\r\n    \"categoria\": 1,\r\n    \"descripcion\": 1,\r\n    \"precio\": 2000.99,\r\n    \"stock\": -2,\r\n    \"imagenUrl\": 1\r\n}\r\n{\r\n    \"nombre\": \"error de precio\",\r\n    \"categoria\": 1,\r\n    \"descripcion\": 1,\r\n    \"precio\": -2000.99,\r\n    \"stock\": 2,\r\n    \"imagenUrl\": 1\r\n}\r\n{\r\n    \"nombre\": \"error de categoria sin categoria\",\r\n    \"descripcion\": 1,\r\n    \"precio\": 2000.99,\r\n    \"stock\": 2,\r\n    \"imagenUrl\": 1\r\n}\r\n*/\r\n    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear_producto_error_cat_inexistente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "/* \r\n{\r\n    \"nombre\": \"error de stock\",\r\n    \"categoria\": 1,\r\n    \"descripcion\": 1,\r\n    \"precio\": 2000.99,\r\n    \"stock\": -2,\r\n    \"imagenUrl\": 1\r\n} \r\n{\r\n    \"nombre\": \"error de categoria sin categoria\",\r\n    \"descripcion\": 1,\r\n    \"precio\": 2000.99,\r\n    \"stock\": 2,\r\n    \"imagenUrl\": 1\r\n}\r\n*/\r\n    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear_producto_error_cat_vacia",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"error de categoria vacia\",\r\n    \"categoria\": \"\",\r\n    \"descripcion\": 1,\r\n    \"precio\": 2000.99,\r\n    \"stock\": 2,\r\n    \"imagenUrl\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear_producto_error_cat_inval",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "/*\r\n     {\r\n         \"nombre\": \"error de categoria vacia\",\r\n         \"categoria\": \"\",\r\n         \"descripcion\": 1,\r\n         \"precio\": 2000.99,\r\n         \"stock\": 2,\r\n         \"imagenUrl\": 1\r\n     }\r\n\r\n{\r\n    \"nombre\": \"error de categoria invalida\",\r\n    \"categoria\": \"noExiste\",\r\n    \"descripcion\": 1,\r\n    \"precio\": 2000.99,\r\n    \"stock\": 2,\r\n    \"imagenUrl\": 1\r\n}    \r\n{\r\n    \"nombre\": \"error de stock\",\r\n    \"categoria\": 1,\r\n    \"descripcion\": 1,\r\n    \"precio\": 2000.99,\r\n    \"stock\": -2,\r\n    \"imagenUrl\": 1\r\n}\r\n{\r\n    \"nombre\": \"error de precio\",\r\n    \"categoria\": 1,\r\n    \"descripcion\": 1,\r\n    \"precio\": -2000.99,\r\n    \"stock\": 2,\r\n    \"imagenUrl\": 1\r\n}\r\n{\r\n    \"nombre\": \"error de categoria sin categoria\",\r\n    \"descripcion\": 1,\r\n    \"precio\": 2000.99,\r\n    \"stock\": 2,\r\n    \"imagenUrl\": 1\r\n}\r\n*/\r\n    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar_producto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"PRODUCTO ACTUALIZADOOOO\",\r\n  \"descripcion\": \"Descripción actualizada\",\r\n  \"precio\": 2999.99,\r\n  \"stock\": 50,\r\n  \"categoria\": \"ELECTRONICA\",\r\n  \"imagenUrl\": \"http://example.com/imagen-nueva.jpg\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar_producto_error",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"PRODUCTO ACTUALIZADOOOO\",\r\n  \"descripcion\": \"Descripción actualizada\",\r\n  \"precio\": -2999.99,\r\n  \"stock\": -50,\r\n  \"categoria\": \"\",\r\n  \"imagenUrl\": \"http://example.com/imagen-nueva.jpg\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "borrar_producto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/productos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "borrar_producto_error",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/productos/200",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"200"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pedidos",
+			"item": [
+				{
+					"name": "traer_pedidos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"1\": 2,\r\n  \"2\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "traer_por_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "traer_por_id_invalido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos/130",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos",
+								"130"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear_pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"items\": {\r\n    \"5\": 1\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear_pedido_error_stock",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"items\": {\r\n    \"5\": 100\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear_pedido_error_stock_negativo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"items\": {\r\n    \"5\": -100\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear_pedido_error_vacio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"items\": { \r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear_pedido_error_producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"items\": {\r\n    \"5000\": 1\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar_pedido",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "globales",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

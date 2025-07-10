@@ -1,11 +1,13 @@
 package com.ecommerce.service;
 
+import com.ecommerce.exception.PedidoInvalidoException;
 import com.ecommerce.exception.RecursoNoEncontradoException;
 import com.ecommerce.exception.StockInsuficienteException;
 import com.ecommerce.model.Pedido;
 import com.ecommerce.model.Producto;
 import com.ecommerce.repository.PedidoRepository;
 import com.ecommerce.repository.ProductoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,32 +36,36 @@ public class PedidoService {
         return pedidoRepo.findByEstadoIgnoreCase(estado);
     }
 
-
+    @Transactional
     public Pedido crearPedido(Map<Long, Integer> items) {
-        double total = 0;
-
-        for (Map.Entry<Long, Integer> entry : items.entrySet()) {
-            Long productoId = entry.getKey();
-            Integer cantidad = entry.getValue();
-
-            Producto producto = productoRepo.findById(productoId)
-                    .orElseThrow(() -> new RecursoNoEncontradoException("Producto ID " + productoId + " no encontrado"));
-
-            if (producto.getStock() < cantidad) {
-                throw new StockInsuficienteException("Stock insuficiente para " + producto.getNombre());
-            }
-
-            producto.setStock(producto.getStock() - cantidad);
-            productoRepo.save(producto); // actualiza stock
-
-            total += producto.getPrecio() * cantidad;
+        if (items == null || items.isEmpty()) {
+            throw new IllegalArgumentException("El pedido debe contener al menos un producto.");
         }
 
+        // Validar que todos los productos existan
+        for (Long productoId : items.keySet()) {
+            if (!productoRepo.existsById(productoId)) {
+                throw new IllegalArgumentException("El producto con ID " + productoId + " no existe.");
+            }
+        }
+
+        // Lógica para calcular el total, crear el pedido, etc.
         Pedido pedido = new Pedido();
-        pedido.setItems(items);
-        pedido.setTotal(total);
         pedido.setEstado("PENDIENTE");
+        pedido.setItems(items);
+        pedido.setTotal(calcularTotal(items));
 
         return pedidoRepo.save(pedido);
     }
+
+    private double calcularTotal(Map<Long, Integer> items) {
+        double total = 0.0;
+        for (Map.Entry<Long, Integer> entry : items.entrySet()) {
+            Producto producto = productoRepo.findById(entry.getKey()).orElseThrow();
+            total += producto.getPrecio() * entry.getValue();
+        }
+        return total;
+    }
+
+
 }

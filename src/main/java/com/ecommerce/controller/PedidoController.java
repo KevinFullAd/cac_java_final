@@ -3,6 +3,7 @@ package com.ecommerce.controller;
 import com.ecommerce.model.Pedido;
 import com.ecommerce.service.PedidoService;
 import com.ecommerce.dto.PedidoRequestDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,25 +40,10 @@ public class PedidoController {
 
 
     @PostMapping
-    public ResponseEntity<?> crearPedido(@RequestBody PedidoRequestDTO pedidoRequest) {
-        Map<Long, Integer> items = pedidoRequest.getItems();
-
-        if (items == null || items.isEmpty()) {
-            return ResponseEntity.badRequest().body("El pedido debe contener al menos un producto.");
-        }
-
-        for (Integer cantidad : items.values()) {
-            if (cantidad == null || cantidad <= 0) {
-                return ResponseEntity.badRequest().body("Las cantidades deben ser mayores a cero.");
-            }
-        }
-
-        try {
-            Pedido pedido = pedidoService.crearPedido(items);
-            return ResponseEntity.status(HttpStatus.CREATED).body(pedido);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<?> crearPedido(@Valid @RequestBody PedidoRequestDTO pedidoRequest) {
+        Pedido pedido = pedidoService.crearPedido(pedidoRequest.getItems());
+        return ResponseEntity.status(HttpStatus.CREATED).body(pedido);
     }
+
 
 }

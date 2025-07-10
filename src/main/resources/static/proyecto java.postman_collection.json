@@ -353,80 +353,6 @@
 			"name": "pedidos",
 			"item": [
 				{
-					"name": "traer_pedidos",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"1\": 2,\r\n  \"2\": 1\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/pedidos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"pedidos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "traer_por_id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/pedidos/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"pedidos",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "traer_por_id_invalido",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/pedidos/130",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"pedidos",
-								"130"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "crear_pedido",
 					"request": {
 						"method": "POST",
@@ -572,20 +498,81 @@
 					"response": []
 				},
 				{
-					"name": "actualizar_pedido",
+					"name": "traer_pedidos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"1\": 2,\r\n  \"2\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "globales",
-			"item": [
+				},
 				{
-					"name": "New Request",
+					"name": "traer_por_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "traer_por_id_invalido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos/130",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos",
+								"130"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar_pedido",
 					"request": {
 						"method": "GET",
 						"header": []

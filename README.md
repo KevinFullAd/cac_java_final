@@ -1,3 +1,6 @@
+---
+# IMPORTANTE: Para que el programa se ejecute correctamente debe crear una base de datos mysql con el nombre "java_cac"
+---
 # 🛒 Backend API - E-Commerce
 
 Este proyecto es un backend funcional para un sistema de e-commerce. Está desarrollado en **Java Spring Boot** y permite gestionar productos y pedidos de forma sencilla, robusta y escalable.
